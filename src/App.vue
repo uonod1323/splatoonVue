@@ -8,7 +8,7 @@ import MainPage from './components/MainPage.vue';
 export default {
   name: 'App',
   components: {
-    MainPage : 'MainPage',
+    MainPage,
   }
 }
 </script>

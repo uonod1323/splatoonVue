@@ -101,13 +101,16 @@
           // 바로 플레이어의 성향을 도출하거나, 세번째 질문으로 넘어가거나.
           // 성향 도출은 함수를 만들어서 공통으로 처리할 수 있도록 합니다. 여기서는 if문만 가지고 처리.
           if(this.position === "mid"){
+
             if(this.style === "target"){
               this.weaponType = "slosher"
               console.log("넌슬딱");
+              this.$emit('changeCurrentPage', this.weaponType) //부모로 데이터 전달.
             }
             else{
               this.weaponType = "shooter"
               console.log("넌슈딱");
+              this.$emit('changeCurrentPage', this.weaponType)
             }
           }else{
             this.questionType = "style2";
@@ -122,57 +125,6 @@
   </script>
   
   <style>
-    div {
-      font-family: 'spla2k';
-      color: white;
-    }
-    body {     
-        background-image: url("../assets/splatoon3-pattern-01-3840x2160-1.jpg");
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-    }
-    .content-container {
-      background-color: rgba(255, 255, 255, 0.3);
-      border-radius: 20px;
-      width: 650px;
-      padding : 50px;
-      height: 90vh;
-      margin: 0 auto;
-      align-items: center;
-      justify-content: center;
-    }
-    .question-container {
-      background-color : rgb(0, 0, 0);
-      font-size: 40px;
-      border-radius: 50px;
-      padding : 5px;
-      margin-bottom: 20px;
-    }
-    @font-face {
-      font-family: 'spla2k';
-      src: url('../assets/fonts/스플래2K.ttf') format('woff');
-    }
-    @font-face {
-      font-family: 'SplatoonKVer2.0';
-      src: url('../assets/fonts/SplatoonKVer.2.0.ttf') format('woff');
-    }
-    .flex-container{
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(2, 1fr);
-      grid-gap: 10px;
-    }
-    .flex-item {
-        width:300px;
-        height:200px;
-        font-size: 30px;
-        background-color: grey;
-        border-radius: 30px;
-        margin: 5px;
-        text-align: center;
-        align-items: center;
-        justify-content: center;
-    }
+   
   </style>
   

@@ -25,6 +25,9 @@ div {
     padding : 5px;
     margin-bottom: 20px;
   }
+  .result-content{
+    font-size: 30px;
+  }
   @font-face {
     font-family: 'spla2k';
     src: url('../assets/fonts/스플래2K.ttf') format('woff');

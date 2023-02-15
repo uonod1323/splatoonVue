@@ -22,7 +22,6 @@
         questionType : '',       // 질문 타입
         position     : '',      // 근거리, 근중거리, 중거리, 원거리
         style        : '',      // 목표, 협력
-        style2       : '',      // 무기군 쪼개기를 위한 상세분류
         weaponType   : '',      // 무기군
 
         question     : '',      // 현재 질문
@@ -45,6 +44,14 @@
             question     : "집을 짓는 목수가 2층으로 올라가려고 합니다. \n 그런데 계단이 망가져 있었습니다. \n 이런 상황에서 목수는 어떻게 할까요?",
             answer1      : "급한 대로 근처에 쌓여 있는 \n 자재들을 밟고 올라간다.",
             answer2      : "다른 사람들과 함께 \n 계단을 먼저 고친다.",
+            answer3      : "",
+            answer4      : ""
+          },
+          {
+            questionType : "closetarget",
+            question     : "",
+            answer1      : "",
+            answer2      : "",
             answer3      : "",
             answer4      : ""
           },
@@ -94,27 +101,32 @@
               this.style = "target";    //목표지향
               break; 
             case 2:
-              this.style = "cooperative";  //협력적인
+              this.style = "coop";  //협력적인
               break;
           }
 
-          // 바로 플레이어의 성향을 도출하거나, 세번째 질문으로 넘어가거나.
-          // 성향 도출은 함수를 만들어서 공통으로 처리할 수 있도록 합니다. 여기서는 if문만 가지고 처리.
-          if(this.position === "mid"){
-
+          // 바로 플레이어의 성향을 도출하거나, 세번째 질문으로 넘어가도록 유도합니다.
+          if(this.position === "close" || this.position === "close-mid"){
+              this.questionType = this.position + this.style;
+              this.setQuestion(this.questionType);          
+          }else if(this.position === "mid"){
             if(this.style === "target"){
               this.weaponType = "slosher"
-              console.log("넌슬딱");
               this.$emit('changeCurrentPage', this.weaponType) //부모로 데이터 전달.
             }
             else{
               this.weaponType = "shooter"
-              console.log("넌슈딱");
-              this.$emit('changeCurrentPage', this.weaponType)
+              this.$emit('changeCurrentPage', this.weaponType) //부모로 데이터 전달.
             }
-          }else{
-            this.questionType = "style2";
-            this.setQuestion(this.questionType);
+          }else if(this.position === "far"){
+            if(this.style === "target"){
+              this.weaponType = "charger"
+              this.$emit('changeCurrentPage', this.weaponType) //부모로 데이터 전달.
+            }
+            else{
+              this.questionType = this.position + this.style;
+              this.setQuestion(this.questionType);
+            }
           }
         }
       }
